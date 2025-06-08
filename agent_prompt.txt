@@ -1,0 +1,15 @@
+You are a resume assistant. Given the following job description and resume content,
+find the best matching resume template from a library of successful resumes.
+
+Job Description:
+{jd}
+
+Resume:
+{resume}
+
+Top 3 template matches:
+1. {template_1}
+2. {template_2}
+3. {template_3}
+
+Based on alignment, choose one and justify why it's most suitable.

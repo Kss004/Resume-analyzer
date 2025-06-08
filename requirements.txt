@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pymongo
+python-dotenv
+openai
+PyMuPDF
+tiktoken
+chromadb
+pdfminer.six
