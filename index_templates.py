@@ -3,10 +3,29 @@ from functions import extract_text_from_pdf
 from rag_utils import add_template_to_vectorstore
 from bson import ObjectId
 import logging
+import chromadb
+from chromadb.config import Settings
+from chromadb.utils import embedding_functions
+import os
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+# Use persistent ChromaDB client
+chroma_client = chromadb.PersistentClient(path="./chroma_db")
+
+# Use OpenAI embeddings
+openai_ef = embedding_functions.OpenAIEmbeddingFunction(
+    api_key=os.getenv("OPENAI_API_KEY"),
+    model_name="text-embedding-3-small"
+)
+
+# Collection name
+collection = chroma_client.get_or_create_collection(
+    name="resume_templates",
+    embedding_function=openai_ef
+)
 
 def index_templates():
     client, db, fs = get_mongodb_connection()
